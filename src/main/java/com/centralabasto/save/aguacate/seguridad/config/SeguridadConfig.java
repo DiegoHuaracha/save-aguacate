@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.centralabasto.save.aguacate.seguridad.manejador.ManejadorAccesoDenegado;
+import com.centralabasto.save.aguacate.seguridad.manejador.ManejadorAutenticacionErronea;
 import com.centralabasto.save.aguacate.seguridad.manejador.ManejadorAutenticacionExitosa;
 
 @Configuration
@@ -19,6 +21,12 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private ManejadorAutenticacionExitosa manejadorAutenticacionExitosa;
+	
+	@Autowired
+	private ManejadorAutenticacionErronea manejadorAutenticacionErronea;
+	
+	@Autowired
+	private ManejadorAccesoDenegado manejadorAccesoDenegado;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder authentication) throws Exception {
@@ -37,10 +45,10 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated()
         .and()
         .formLogin().loginPage("/index.do").usernameParameter("claveUsuario").permitAll()
-        //.failureHandler(manejadorAutenticacionErronea)
+        .failureHandler(manejadorAutenticacionErronea)
         .successHandler(manejadorAutenticacionExitosa)
-        //.and()
-        //.exceptionHandling().accessDeniedHandler(manejadorAccesoDenegado)
+        .and()
+        .exceptionHandling().accessDeniedHandler(manejadorAccesoDenegado)
         ;
 	}
 }

@@ -1,5 +1,64 @@
 html {
-	background: #fff;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+body.bg-index {
+	background: url("../img/bg-avocado.jpg");
+	background-size: cover;
+}
+
+body.bg-sesion {
+	background: #dcedc8;
+}
+
+footer.footer-document {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	
+	background-color: #343a40!important;
+	color: #fff;
+	align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+
+    font-size: .8rem;
+
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+ul.ul-no-bullets {
+	list-style-type:none;
+}
+
+ul.ul-no-bullets > li > strong {
+	color: #ffc107;
+}
+
+ul.ul-no-bullets > li > a {
+	color: #8bc34a;
+}
+
+ul.ul-no-bullets > li > a:hover {
+	color: #cddc39;
+	text-decoration: none;
+}
+
+.user-data {
+	background: #8bc34a;
+	color: #5d4037;
+	margin-top: -25px;
+	padding: .3rem 1rem;
+	font-size: .9rem;
 }
 
 .p-3 {

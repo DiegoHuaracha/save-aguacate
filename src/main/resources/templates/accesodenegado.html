@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="Gestión de Negocio SAVE" />
 	<meta name="author" content="Emmanuel Delgado Mej&iacute;a, Diego Huaracha Gasca" />
-	<title>SAVE</title>
+	<title>SAVE - Acceso Denegado</title>
 
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/general.css}" />
@@ -13,8 +15,9 @@
 
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/sesion.js}"></script>
 </head>
-<body class="bg-index">
+<body class="bg-sesion">
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 		<span class="navbar-brand">SAVE</span>
 
@@ -24,28 +27,44 @@
 
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Catálogos
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Usuarios</a>
+						<a class="dropdown-item" href="#">Proveedores</a>
+						<a class="dropdown-item" href="#">Producto (Variedad)</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>	
 			</ul>
-			<form class="form-inline mt-2 mt-md-0" th:action="@{/index.do}" method='POST' id="loginForm" autocomplete="off">
-				<select name="claveUsuario" id="sltClaveUsuario" class="form-control mr-sm-2">
-					<option value="-1">-- Seleccione un usuario --</option>
-					<option th:each="usuario: ${usuarios}" th:value="${usuario.clave}" th:text="${usuario.nombre} + ' ' + ${usuario.apellidoPaterno} + ' ' + ${usuario.apellidoMaterno}"></option>
-				</select>
-				<input name="password" id="txtContrasennia" type="password" class="form-control mr-sm-2" placeholder="Contrase&ntilde;a" />
-				<button class="btn btn-success">Iniciar Sesión</button>
+			
+			<form class="form-inline mt-2 mt-md-0" th:action="@{/logout}" id="frmLogout" method="POST">
+				<button type="button" class="btn btn-outline-warning btn-sm" id="btnCerrarSession">Cerrar Sesi&oacute;n</button>
 			</form>
 		</div>
 	</nav>
 	
+	<section class="user-data">
+		<strong sec:authentication="name">Nombre de Usuario</strong>
+	</section>
+
 	<div class="container">
-		<div class="row" th:if="${error}">
-			<div class="col-md-1"></div>
-			<div class="alert alert-danger col-md-10" role="alert">
-				<h4 class="alert-heading">Error de autenticaci&oacute;n</h4>
-				<p th:text="${error}" />
-			</div>
-			<div class="col-md-1"></div>
-		</div>	
+		<div class="alert alert-danger" role="alert">
+		  <h4 class="alert-heading">Acceso denegado</h4>
+		  <p>
+		  	Usted no tiene los permisos necesarios para ver el recurso solicitado.
+		  </p>
+		  <hr>
+		  <p class="mb-0">
+		  	De ser necesario póngase en contacto con el administrador del sistema.
+		  </p>
+		</div>
 	</div>
 	
 	<footer class="footer-document">
