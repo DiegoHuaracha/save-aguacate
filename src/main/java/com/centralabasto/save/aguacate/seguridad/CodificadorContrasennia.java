@@ -7,8 +7,8 @@ import org.springframework.security.crypto.codec.Hex;
 import org.springframework.stereotype.Component;
 
 import com.centralabasto.save.aguacate.catalogo.EncripcionExcepcionCatalogo;
-import com.centralabasto.save.aguacate.config.EncripcionConfig;
 import com.centralabasto.save.aguacate.excepcion.EncripcionExcepcion;
+import com.centralabasto.save.aguacate.seguridad.config.EncripcionConfig;
 
 @Component
 public class CodificadorContrasennia {

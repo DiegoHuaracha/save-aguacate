@@ -1,4 +1,4 @@
-package com.centralabasto.save.aguacate.config;
+package com.centralabasto.save.aguacate.seguridad.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

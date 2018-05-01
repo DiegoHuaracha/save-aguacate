@@ -5,7 +5,7 @@ drop table if exists permiso;
 
 create table perfil(
   clave smallint not null auto_increment
-  , nombre varchar(150) not null
+  , nombre varchar(20) not null
   , primary key(clave)
 );
 
@@ -24,13 +24,15 @@ create table permiso_perfil(
 );
 
 create table usuario(
-  clave smallint not null
+  clave smallint not null auto_increment
   , contrasennia varchar(150) not null
   , clave_perfil smallint not null
   , nombre varchar(150) not null
   , apellidoPaterno varchar(150) not null
   , apellidoMaterno varchar(150) not null
   , fechaAlta date not null
+  , activo smallint not null default 1
+  , fechaUltimoAcceso date
   , primary key(clave)
   , foreign key(clave_perfil) references perfil(clave)
 );

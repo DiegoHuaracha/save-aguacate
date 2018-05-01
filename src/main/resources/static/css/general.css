@@ -1,0 +1,7 @@
+html {
+	background: #fff;
+}
+
+.p-3 {
+	padding: $spacer !important;
+}

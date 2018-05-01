@@ -3,8 +3,12 @@ package com.centralabasto.save.aguacate;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,6 +22,8 @@ public class EncripcionTest {
 
 	@Autowired
 	private CodificadorContrasennia codificadorContrasennia;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(EncripcionTest.class);
 	
 	@Test
 	public void testValidacionContrasenniaCorrecta() {
@@ -47,5 +53,19 @@ public class EncripcionTest {
 		} catch (EncripcionExcepcion e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testGenerarContrrasennias() {
+		String[] contrasenniaOriginal = new String[]{"laquesea123", "savegenerica"};
+		
+		Arrays.asList(contrasenniaOriginal).stream().forEach(contrasennia -> {
+			try {
+				String contrasenniaEncriptada = codificadorContrasennia.getContrasenniaEncriptada(contrasennia);
+				LOGGER.info("{}\t->\t{}", contrasennia, contrasenniaEncriptada);
+			} catch(Exception e) {
+				LOGGER.error("{}", e);
+			}
+		});
 	}
 }
